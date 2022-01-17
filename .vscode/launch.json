@@ -1,0 +1,59 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Employee Api",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "taskEmployeeApiBuild",
+            "program": "${workspaceFolder}/src/RsCase.Employee.Api/bin/Debug/net5.0/RsCase.Employee.Api.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}",
+            "stopAtEntry": false,
+            "serverReadyAction": {
+                "action": "openExternally",
+                "pattern": "\\bNow listening on:\\s+(https?://\\S+)"
+            },
+            "env": {
+                "ASPNETCORE_ENVIRONMENT": "Development"
+            },
+            "sourceFileMap": {
+                "/Views": "${workspaceFolder}/Views"
+            }
+        },
+        {
+            "name": "Identity Api",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "taskIdentityBuild",
+            "program": "${workspaceFolder}/src/RsCase.IdentityServer/bin/Debug/net5.0/RsCase.IdentityServer.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/src/RsCase.IdentityServer",
+            "stopAtEntry": false,
+            "serverReadyAction": {
+                "action": "openExternally",
+                "pattern": "\\bNow listening on:\\s+(https?://\\S+)"
+            },
+            "env": {
+                "ASPNETCORE_ENVIRONMENT": "Development"
+            },
+            "sourceFileMap": {
+                "/Views": "${workspaceFolder}/Views"
+            }
+        },    
+        {
+            "name": ".NET Core Attach",
+            "type": "coreclr",
+            "request": "attach"
+        }
+    ],
+    "compounds": [
+        {
+            "name": "Auth + Employee Api",
+            "configurations": ["Employee Api", "Identity Api"]
+        }
+    ],
+}
